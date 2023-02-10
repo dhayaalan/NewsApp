@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const homeRouter = require('./router/homeRouter');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/home', homeRouter);
 
 mongoose.set('strictQuery', false);
 mongoose.connect(
