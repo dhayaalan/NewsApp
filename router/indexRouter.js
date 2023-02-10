@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const {
-  getHomeController,
-  putHomeController,
+  getNews,
+  postHomeController,
   deleteHomeController,
-} = require('../controller/homeController');
+  getSingleNews,
+} = require('../controller/indexController');
 
-router.get('/', getHomeController);
+router.get('/', getNews);
 
-router.post('/', putHomeController);
+router.get('/:id', getSingleNews);
+
+router.post('/', postHomeController);
 
 router.put('/:id', (req, res) => {
   res.status(200).json({ message: `Updated Data sent ${req.params.id}` });
