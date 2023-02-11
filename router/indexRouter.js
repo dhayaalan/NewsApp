@@ -6,6 +6,7 @@ const {
   deleteNews,
   deleteAllNews,
   getSingleNews,
+  updateNews,
 } = require('../controller/indexController');
 
 router.get('/', getNews);
@@ -14,9 +15,7 @@ router.get('/:id', getSingleNews);
 
 router.post('/', postNews);
 
-router.put('/:id', (req, res) => {
-  res.status(200).json({ message: `Updated Data sent ${req.params.id}` });
-});
+router.put('/:id', updateNews);
 
 router.delete('/:id', deleteNews);
 

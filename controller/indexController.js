@@ -29,9 +29,21 @@ exports.postNews = async (req, res) => {
   res.status(201).json(newNews);
 };
 
+//update single news
+exports.updateNews = async (req, res) => {
+  const updateNews = await Index.updateOne({
+    name: req.body.name,
+  });
+  try {
+    res.status(201).json({ updateNews });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+};
+
 //Delete Sinlge news
 exports.deleteNews = async (req, res) => {
-  const deletedNews = await Index.deleteMany();
+  const deletedNews = await Index.deleteOne();
   try {
     res.status(200).json({ deletedNews: deletedNews });
   } catch (err) {
