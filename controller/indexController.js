@@ -1,5 +1,4 @@
-const asyncHandler = require('express-async-handler');
-const Index = require('../models');
+const Index = require('../models/index');
 
 // Get All News Feed
 exports.getNews = async (req, res) => {
@@ -20,7 +19,7 @@ exports.getSingleNews = async (req, res) => {
 };
 
 //Create Single News
-exports.postHomeController = async (req, res) => {
+exports.postNews = async (req, res) => {
   const newsFeed = new Index({
     name: req.body.name,
     image: req.body.image,
@@ -30,6 +29,18 @@ exports.postHomeController = async (req, res) => {
   res.status(201).json(newNews);
 };
 
-exports.deleteHomeController = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Deleted data ${req.params.id}` });
-});
+//Delete Sinlge news
+exports.deleteNews = async (req, res) => {
+  const deletedNews = await Index.deleteMany();
+  try {
+    res.status(200).json({ deletedNews: deletedNews });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+};
+
+//Delete All news
+exports.deleteAllNews = async (req, res) => {
+  const deletedNews = await Index.deleteMany();
+  res.status(200).json({ deletedNews: deletedNews });
+};
