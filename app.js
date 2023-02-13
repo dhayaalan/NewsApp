@@ -1,13 +1,15 @@
 const express = require('express');
 const db = require('./util/db');
-const indexRouter = require('./router/indexRouter');
+const newsRouter = require('./router/newsRouter');
+const categroyRouter = require('./router/categoryRouter');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/index', indexRouter);
+app.use('/news', newsRouter);
+app.use('/categories', categroyRouter);
 
 db.once('open', () => {
   console.log('Connected to database');

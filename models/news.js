@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const category = require('./category');
 
-const HomeScreen = new mongoose.Schema({
+const NewsSchema = new mongoose.Schema({
   headlines: {
     type: String,
     required: true,
@@ -17,7 +18,8 @@ const HomeScreen = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now,
+    ref: category,
   },
 });
 
-module.exports = mongoose.model('Index', HomeScreen);
+module.exports = mongoose.model('news', NewsSchema);
