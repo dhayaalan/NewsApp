@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const HomeScreen = new mongoose.Schema({
-  name: {
+  headlines: {
     type: String,
     required: true,
   },

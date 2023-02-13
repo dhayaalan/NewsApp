@@ -21,7 +21,7 @@ exports.getSingleNews = async (req, res) => {
 //Create Single News
 exports.postNews = async (req, res) => {
   const newsFeed = new Index({
-    name: req.body.name,
+    headlines: req.body.headlines,
     image: req.body.image,
     description: req.body.description,
   });
