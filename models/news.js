@@ -5,7 +5,6 @@ const NewsSchema = new mongoose.Schema({
   headlines: {
     type: String,
     required: true,
-    ref: 'category',
   },
   image: {
     type: String,
@@ -19,6 +18,11 @@ const NewsSchema = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now,
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'category',
+    selectPopulatedPaths: false,
   },
 });
 

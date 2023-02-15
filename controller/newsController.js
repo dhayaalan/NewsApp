@@ -3,8 +3,8 @@ const news = require('../models/news');
 // Get All News
 exports.list = async (req, res) => {
   try {
-    const news = await news.find();
-    res.json(news);
+    const result = await news.find();
+    res.json(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
