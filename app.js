@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('./util/db');
 const newsRouter = require('./router/newsRouter');
 const categroyRouter = require('./router/categoryRouter');
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
