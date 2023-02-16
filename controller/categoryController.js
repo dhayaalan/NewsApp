@@ -1,4 +1,4 @@
-const { uuid } = require('uuidv4');
+const { v1: uuidv1 } = require('uuid');
 const category = require('../models/category');
 
 // Get All category
@@ -22,7 +22,7 @@ exports.category = async (req, res) => {
 //Create Single Category
 exports.create = async (req, res) => {
   const create = new category({
-    id: uuid.v1(),
+    id: uuidv1(),
     name: req.body.name,
   });
   const categorylist = await create.save();
@@ -49,10 +49,4 @@ exports.remove = async (req, res) => {
   } catch (err) {
     res.json({ message: err.message });
   }
-};
-
-//Delete All Category
-exports.deleteAll = async (req, res) => {
-  const delCategory = await category.deleteMany();
-  res.status(200).json({ delCategory: delCategory });
 };

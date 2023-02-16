@@ -19,6 +19,4 @@ router.put('/:id', modifies); //Update the single news
 
 router.delete('/:id', remove); //Delete the sinlge news
 
-router.delete('/', deleteList); //Delete the list of news
-
 module.exports = router;

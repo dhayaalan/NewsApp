@@ -1,5 +1,6 @@
-const { uuid } = require('uuid');
+const { v1: uuidv1 } = require('uuid');
 const news = require('../models/news');
+const categoryModel = require('../models/category');
 
 // Get All News
 exports.list = async (req, res) => {
@@ -21,8 +22,13 @@ exports.news1 = async (req, res) => {
 
 //Create Single News
 exports.create = async (req, res) => {
+  var category = await categoryModel.findOne({ id: req.params.id });
+  if (category == null) {
+    return res.status(404).json({ message: 'category not found' });
+  }
   const newsFeed = new news({
-    id: uuid.v1(),
+    category: category,
+    id: uuidv1(),
     headlines: req.body.headlines,
     image: req.body.image,
     description: req.body.description,
@@ -33,7 +39,12 @@ exports.create = async (req, res) => {
 
 //update single News
 exports.modifies = async (req, res) => {
+  var category = await categoryModel.findOne({ id: req.params.id });
+  if (category == null) {
+    return res.status(404).json({ message: 'category not found' });
+  }
   const updateNews = await news.updateOne(req.params['id'], {
+    category:category,
     name: req.body.name,
   });
   try {
@@ -45,6 +56,10 @@ exports.modifies = async (req, res) => {
 
 //Delete Sinlge News
 exports.remove = async (req, res) => {
+  var category = await categoryModel.findOne({ id: req.params.id });
+  if (category == null) {
+    return res.status(404).json({ message: 'category not found' });
+  }
   const deletedNews = await news.deleteOne(req.params['id']);
   try {
     res.status(200).json({ deletedNews: deletedNews });
@@ -53,8 +68,4 @@ exports.remove = async (req, res) => {
   }
 };
 
-//Delete All News
-exports.deleteList = async (req, res) => {
-  const deletedNews = await news.deleteMany();
-  res.status(200).json({ deletedNews: deletedNews });
-};
+

@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   list,
   remove,
-  deleteAll,
   modifies,
   create,
   category,
@@ -13,12 +12,10 @@ router.get('/', list); // Get All the list category
 
 router.get('/:id', category); // Get Single category
 
-router.post('/', create); //Create the single category 
+router.post('/', create); //Create the single category
 
 router.put('/:id', modifies); //Update the single category
 
 router.delete('/:id', remove); //Delete the single category
-
-router.delete('/', deleteAll); //Delete the list of category
 
 module.exports = router;
