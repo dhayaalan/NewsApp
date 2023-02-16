@@ -1,3 +1,4 @@
+const { uuid } = require('uuidv4');
 const category = require('../models/category');
 
 // Get All category
@@ -21,6 +22,7 @@ exports.category = async (req, res) => {
 //Create Single Category
 exports.create = async (req, res) => {
   const create = new category({
+    id: uuid.v1(),
     name: req.body.name,
   });
   const categorylist = await create.save();

@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const uuid = require('uuidv4');
 const category = require('./category');
 
 const NewsSchema = new mongoose.Schema({
+  id: {
+    type : String,
+    required: true,
+  },
   headlines: {
     type: String,
     required: true,

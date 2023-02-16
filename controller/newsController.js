@@ -1,3 +1,4 @@
+const { uuid } = require('uuid');
 const news = require('../models/news');
 
 // Get All News
@@ -21,6 +22,7 @@ exports.news1 = async (req, res) => {
 //Create Single News
 exports.create = async (req, res) => {
   const newsFeed = new news({
+    id: uuid.v1(),
     headlines: req.body.headlines,
     image: req.body.image,
     description: req.body.description,
