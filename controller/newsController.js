@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
 //update single News
 exports.modifies = async (req, res) => {
   const updateNews = await news.updateOne(
-    { id: req.params.id },
+    { id: req.params._id },
     {
       headlines: req.body.headlines,
       description: req.body.description,
@@ -49,7 +49,7 @@ exports.modifies = async (req, res) => {
 
 //Delete Sinlge News
 exports.remove = async (req, res) => {
-  const deletedNews = await news.deleteOne({ id: req.params.id });
+  const deletedNews = await news.deleteOne({ id: req.params._id });
   try {
     res.status(200).json({ deletedNews: deletedNews });
   } catch (err) {
