@@ -1,4 +1,3 @@
-const { v1: uuidv1 } = require('uuid');
 const category = require('../models/category');
 
 // Get All category
@@ -22,7 +21,6 @@ exports.category = async (req, res) => {
 //Create Single Category
 exports.create = async (req, res) => {
   const create = new category({
-    id: uuidv1(),
     name: req.body.name,
   });
   const categorylist = await create.save();
@@ -31,7 +29,7 @@ exports.create = async (req, res) => {
 
 //update single Category
 exports.modifies = async (req, res) => {
-  const modifies = await category.updateOne({
+  const modifies = await category.updateOne(req.params.id, {
     name: req.body.name,
   });
   try {

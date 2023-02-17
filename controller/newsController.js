@@ -1,4 +1,3 @@
-const { v1: uuidv1 } = require('uuid');
 const news = require('../models/news');
 const categoryModel = require('../models/category');
 
@@ -22,16 +21,11 @@ exports.news1 = async (req, res) => {
 
 //Create Single News
 exports.create = async (req, res) => {
-  var category = await categoryModel.findOne({ id: req.params.id });
-  if (category == null) {
-    return res.status(404).json({ message: 'category not found' });
-  }
   const newsFeed = new news({
-    category: category,
-    id: uuidv1(),
     headlines: req.body.headlines,
     image: req.body.image,
     description: req.body.description,
+    category: req.body.categoryId,
   });
   const newNews = await newsFeed.save();
   res.status(201).json(newNews);
@@ -39,14 +33,13 @@ exports.create = async (req, res) => {
 
 //update single News
 exports.modifies = async (req, res) => {
-  var category = await categoryModel.findOne({ id: req.params.id });
-  if (category == null) {
-    return res.status(404).json({ message: 'category not found' });
-  }
-  const updateNews = await news.updateOne(req.params['id'], {
-    category:category,
-    name: req.body.name,
-  });
+  const updateNews = await news.updateOne(
+    { id: req.params.id },
+    {
+      headlines: req.body.headlines,
+      description: req.body.description,
+    }
+  );
   try {
     res.status(201).json({ updateNews });
   } catch (err) {
@@ -56,16 +49,10 @@ exports.modifies = async (req, res) => {
 
 //Delete Sinlge News
 exports.remove = async (req, res) => {
-  var category = await categoryModel.findOne({ id: req.params.id });
-  if (category == null) {
-    return res.status(404).json({ message: 'category not found' });
-  }
-  const deletedNews = await news.deleteOne(req.params['id']);
+  const deletedNews = await news.deleteOne({ id: req.params.id });
   try {
     res.status(200).json({ deletedNews: deletedNews });
   } catch (err) {
     res.json({ message: err.message });
   }
 };
-
-
