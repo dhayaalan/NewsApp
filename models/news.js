@@ -23,7 +23,6 @@ const NewsSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'category',
-    selectPopulatedPaths: true,
   },
 });
 
