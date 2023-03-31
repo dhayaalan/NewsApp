@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -13,7 +12,18 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "mongoose": "^6.9.1",
+    "nodemon": "^2.0.22",
     "uuid": "^9.0.0",
     "uuidv4": "^6.2.13"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhayaalan/NewsApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dhayaalan/NewsApp/issues"
+  },
+  "homepage": "https://github.com/dhayaalan/NewsApp#readme",
+  "description": ""
 }
